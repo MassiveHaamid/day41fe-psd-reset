@@ -23,7 +23,29 @@ const ResetForm = () => {
     <div>
       <h2>Reset Password</h2>
       <form onSubmit={handleSubmit}>
-        {/* Password input fields and submit button */}
+        <div>
+          <label htmlFor="password">New Password:</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+
+        <div>
+          <label htmlFor="confirmPassword">Confirm Password:</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
+        </div>
+
+        <button type="submit">Reset Password</button>
       </form>
       {error && <p>{error}</p>}
     </div>
