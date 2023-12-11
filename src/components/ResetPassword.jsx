@@ -1,42 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 const ResetPassword = () => {
-    const { token } = useParams();
-    const [password, setPassword] = useState('');
-    const [message, setMessage] = useState('');
+    const [email, setEmail] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+    const [resetPasswordSuccess, setResetPasswordSuccess] = useState('');
 
-    useEffect(() => {
-        const fetchResetMessage = async () => {
-            try {
-                const response = await axios.get(`/api/reset-password/${token}`);
-                setMessage(response.data.message);
-            } catch (error) {
-                console.error(error.response?.data?.error || 'Something went wrong.');
-                setMessage('Error: ' + (error.response?.data?.error || 'Something went wrong.'));
-            }
-        };
-    
-        fetchResetMessage();
-    }, [token, password]);
-
-    const handleUpdatePassword = async () => {
+    const handleResetPassword = async () => {
         try {
-            await axios.post('/api/update-password', { token, password });
-            setMessage('Password updated successfully.');
+            await axios.post(`/api/reset-password/${email}`, { newPassword });
+            setResetPasswordSuccess('Password reset successful!');
+            // Clear the success message after a certain duration if needed
+            setTimeout(() => setResetPasswordSuccess(''), 5000);
         } catch (error) {
-            console.error(error.response?.data?.error || 'Something went wrong.');
-            setMessage('Error: ' + (error.response?.data?.error || 'Something went wrong.'));
+            console.error('Error in reset password:', error);
         }
     };
 
     return (
         <div>
-            <h2>Reset Password</h2>
-            <p>{message}</p>
-            <input type="password" placeholder="Enter new password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            <button onClick={handleUpdatePassword}>Update Password</button>
+            <h3>Reset Password</h3>
+            <input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+                type="password"
+                placeholder="Enter new password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+            />
+            <button onClick={handleResetPassword}>Submit Reset Password</button>
+            {resetPasswordSuccess && <p style={{ color: 'green' }}>{resetPasswordSuccess}</p>}
         </div>
     );
 };
