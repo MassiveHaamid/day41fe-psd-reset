@@ -8,7 +8,7 @@ const ResetPassword = () => {
 
     const handleResetPassword = async () => {
         try {
-            await axios.post(`/api/reset-password/${email}`, { newPassword });
+            await axios.post(`http://localhost:3001/api/auth/reset-password/${email}`, { newPassword });
             setResetPasswordSuccess('Password reset successful!');
             // Clear the success message after a certain duration if needed
             setTimeout(() => setResetPasswordSuccess(''), 5000);

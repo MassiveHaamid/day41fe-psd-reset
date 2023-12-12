@@ -7,7 +7,7 @@ const ForgetPassword = () => {
 
   const handleForgetPassword = async () => {
     try {
-      await axios.post('/api/forget-password', { email });
+      await axios.post('http://localhost:3001/api/auth/forget-password', { email });
       setForgetPasswordSuccess('Forget password request successful!');
       setTimeout(() => setForgetPasswordSuccess(''), 5000);
     } catch (error) {

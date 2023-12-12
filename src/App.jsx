@@ -4,6 +4,7 @@ import Dashboard from './components/Dashboard.jsx';
 import ForgetPassword from './components/ForgotPassword.jsx';
 import ResetPassword from './components/ResetPassword.jsx';
 import RegistrationForm from './components/RegistrationForm.jsx';
+import LoginForm from './components/Loginform.jsx';
 import './styles/styles.css';
 
 const App = () => {
@@ -12,6 +13,9 @@ const App = () => {
       <div>
         <nav>
           <ul>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
             <li>
               <Link to="/">Dashboard</Link>
             </li>
@@ -25,6 +29,7 @@ const App = () => {
         </nav>
 
         <Routes>
+        <Route path="/login" element={<LoginForm />}/>
           <Route path="/" element={<Dashboard />} />
           <Route path="/register" element={<RegistrationForm />} />
           <Route path="/forget-password" element={<ForgetPassword />} />

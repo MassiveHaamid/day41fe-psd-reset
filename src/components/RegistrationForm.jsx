@@ -9,7 +9,7 @@ const RegistrationForm = () => {
 
     const handleRegistration = async () => {
         try {
-            await axios.post('/api/register', { email: registrationEmail, password: registrationPassword });
+            await axios.post('http://localhost:3001/api/auth/register', { email: registrationEmail, password: registrationPassword });
             setRegistrationSuccess('Registration successful!');
             // Clear the success message after a certain duration if needed
             setTimeout(() => setRegistrationSuccess(''), 5000);
