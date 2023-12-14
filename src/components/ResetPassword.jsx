@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 const ResetPassword = () => {
     const [email, setEmail] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [resetPasswordSuccess, setResetPasswordSuccess] = useState('');
+const {token}=useParams()
 
     const handleResetPassword = async () => {
         try {
-            await axios.post(`http://localhost:3001/api/auth/reset-password/${email}`, { newPassword });
+            await axios.post(`http://localhost:3001/api/auth/reset-password/${token}`, { password:newPassword });
             setResetPasswordSuccess('Password reset successful!');
             // Clear the success message after a certain duration if needed
             setTimeout(() => setResetPasswordSuccess(''), 5000);
