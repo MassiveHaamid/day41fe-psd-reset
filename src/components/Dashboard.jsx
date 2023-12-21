@@ -8,7 +8,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchResetRequests = async () => {
       try {
-        const response = await axios.get('/api/reset-requests');
+        const response = await axios.get('https://psd-reset-bend.onrender.com/api/reset-requests');
         setResetRequests(Array.isArray(response.data) ? response.data : []);
       } catch (error) {
         console.error('Error fetching reset requests:', error);

@@ -8,7 +8,7 @@ const LoginForm = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('http://localhost:3001/api/auth/login', { email:username, password });
+      const response = await axios.post('https://psd-reset-bend.onrender.com/api/auth/login', { email:username, password });
       setLoginSuccess(response.data.message);
       localStorage.setItem("token", response.data.token);
       setTimeout(() =>{window.location.href="/dashboard"}, 3000);

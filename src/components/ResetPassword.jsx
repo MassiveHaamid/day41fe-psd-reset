@@ -10,7 +10,7 @@ const {token}=useParams()
 
     const handleResetPassword = async () => {
         try {
-            await axios.post(`http://localhost:3001/api/auth/reset-password/${token}`, { password:newPassword });
+            await axios.post(`https://psd-reset-bend.onrender.com/api/auth/reset-password/${token}`, { password:newPassword });
             setResetPasswordSuccess('Password reset successful!');
             // Clear the success message after a certain duration if needed
             setTimeout(() => setResetPasswordSuccess(''), 5000);
